@@ -2,6 +2,8 @@ package com.alireza.weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestClient;
 
 @SpringBootApplication
 public class WeatherApplication {
@@ -10,4 +12,8 @@ public class WeatherApplication {
 		SpringApplication.run(WeatherApplication.class, args);
 	}
 
+	@Bean
+	public RestClient.Builder restClientBuilder(){
+		return RestClient.builder();
+	}
 }
