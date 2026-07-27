@@ -1,6 +1,7 @@
 package com.alireza.weather.controller;
 
 import com.alireza.weather.model.CurrentWeather;
+import com.alireza.weather.model.WeatherInformation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,13 +16,13 @@ public class WeatherController {
     }
 
     @GetMapping("/api/weather")
-    public CurrentWeather getWeather(@RequestParam double lat, @RequestParam double lon){
+    public WeatherInformation getWeather(@RequestParam double lat, @RequestParam double lon){
         return restClient.get().uri(uriBuilder -> uriBuilder
                 .path("/v1/forecast")
                 .queryParam("latitude", lat)
                 .queryParam("longitude", lon)
-                .queryParam("current","precipitation","temperature_2m,wind_speed_10m,weather_code")
+                .queryParam("current", "precipitation,temperature_2m,wind_speed_10m,weather_code")
                 .build()).retrieve()
-                .body(CurrentWeather.class);
+                .body(WeatherInformation.class);
     }
 }
