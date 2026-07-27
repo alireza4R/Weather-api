@@ -20,7 +20,7 @@ public class WeatherController {
                 .path("/v1/forecast")
                 .queryParam("latitude", lat)
                 .queryParam("longitude", lon)
-                .queryParam("current", "time","precipitation","temperature_2m,wind_speed_10m,weather_code")
+                .queryParam("current","precipitation","temperature_2m,wind_speed_10m,weather_code")
                 .build()).retrieve()
                 .body(WeatherInformation.class);
     }
